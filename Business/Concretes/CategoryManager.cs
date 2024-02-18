@@ -1,42 +1,44 @@
 ﻿using Business.Abstracts;
+using Business.DTOs.Requests;
+using Business.DTOs.Responses;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Concretes
+namespace Business.Concretes;
+
+public class CategoryManager : ICategoryService
 {
-    public class CategoryManager : ICategoryService
+    ICategoryDal _categoryDal;
+
+    public CategoryManager(ICategoryDal categoryDal)
     {
-        ICategoryDal _categoryDal;
-
-        public CategoryManager(ICategoryDal categoryDal)
-        {
-            _categoryDal = categoryDal;
-        }
-
-        public async Task Add(Category category)
-        {
-            await _categoryDal.AddAsync(category);
-        }
-
-        public async Task Delete(Category category)
-        {
-            await _categoryDal.DeleteAsync(category, true);
-        }
-
-        public async Task<IPaginate<Category>> GetListAsync()
-        {
-            return await _categoryDal.GetListAsync();
-        }
-
-        public async Task Update(Category category)
-        {
-            await _categoryDal.UpdateAsync(category);
-        }
+        _categoryDal = categoryDal;
     }
+
+    public async Task Add(Category category)
+    {
+        await _categoryDal.AddAsync(category);
+    }
+
+    public Task<CreatedCategoryResponse> Add(CreateCategoryRequest createCategoryRequest)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task Delete(Category category)
+    {
+        await _categoryDal.DeleteAsync(category, true);
+    }
+
+    public Task<IPaginate<GetListCategoryResponse>> GetListAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task Update(Category category)
+    {
+        await _categoryDal.UpdateAsync(category);
+    }
+
 }

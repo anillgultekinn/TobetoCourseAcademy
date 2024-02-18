@@ -1,24 +1,18 @@
 ﻿using Core.DataAccess.Paging;
 using Entities.Concretes;
 using Entities.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Abstracts
+namespace Business.Abstracts;
+
+public interface ICourseService
 {
-    public interface ICourseService
-    {
-        Task Add(Course course);
+    Task Add(Course course);
 
-        Task Delete(Course course);
+    Task Delete(Course course);
 
-        Task Update(Course course);
+    Task Update(Course course);
 
-        Task<IPaginate<Course>> GetListAsync();
+    Task<IPaginate<Course>> GetListAsync();
 
-        Task<IPaginate<CourseDetailsDto>> GetDetailsListAsync();
-    }
+    Task<IPaginate<CourseDetailsDto>> GetDetailsListAsync();
 }
